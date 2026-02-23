@@ -59,7 +59,7 @@ class _CounterWidgetState extends State<CounterWidget> {
               color: Colors.blue,
               padding: const EdgeInsets.all(16),
               child: Text(
-                '$_counter',
+                _counter == 100 ? '🚀 LIFTOFF!' : '$_counter',
                 style: TextStyle(fontSize: 50.0, color: _getStatusColor()),
               ),
             ),
