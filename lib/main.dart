@@ -27,6 +27,18 @@ class _CounterWidgetState extends State<CounterWidget> {
   // set counter value
   int _counter = 0;
 
+  void _decrement() {
+    setState(() {
+      if (_counter > 0) _counter--;
+    });
+  }
+
+  void _reset() {
+    setState(() {
+      _counter = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,20 +71,33 @@ class _CounterWidgetState extends State<CounterWidget> {
             inactiveColor: Colors.red,
           ),
           const SizedBox(height: 20),
-
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-            ),
-            onPressed: () {
-              setState(() {
-                if (_counter <100){
-                  _counter++;
-                }
-              });
-            },
-            child: const Text('Ignite'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                ),
+                onPressed: () {
+                  setState(() {
+                    if (_counter < 100) _counter++;
+                  });
+                },
+                child: const Text('Ignite'),
+              ),
+              const SizedBox(width: 16),
+              ElevatedButton(
+                onPressed: _decrement,
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                child: const Text('Decrement'),
+              ),
+              const SizedBox(width: 16),
+              ElevatedButton(
+                onPressed: _reset,
+                child: const Text('Reset'),
+              ),
+            ],
           ),
         ],
       ),
