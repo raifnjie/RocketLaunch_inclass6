@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rocket Launch Controller',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -50,9 +51,10 @@ class _CounterWidgetState extends State<CounterWidget> {
           Center(
             child: Container(
               color: Colors.blue,
+              padding: const EdgeInsets.all(16),
               child: Text(
                 '$_counter',
-                style: const TextStyle(fontSize: 50.0),
+                style: const TextStyle(fontSize: 50.0, color: Colors.white),
               ),
             ),
           ),
@@ -82,6 +84,22 @@ class _CounterWidgetState extends State<CounterWidget> {
                 child: const Text('Reset'),
               ),
             ],
+          ),
+          const SizedBox(height: 20),
+
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            ),
+            onPressed: () {
+              setState(() {
+                if (_counter <100){
+                  _counter++;
+                }
+              });
+            },
+            child: const Text('Ignite'),
           ),
         ],
       ),
