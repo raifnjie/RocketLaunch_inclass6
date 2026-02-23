@@ -38,6 +38,12 @@ class _CounterWidgetState extends State<CounterWidget> {
     });
   }
 
+  Color _getStatusColor() {
+    if (_counter == 0) return Colors.red;
+    if (_counter <= 50) return Colors.orange;
+    return Colors.green;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,10 +58,11 @@ class _CounterWidgetState extends State<CounterWidget> {
               color: Colors.blue,
               child: Text(
                 '$_counter',
-                style: const TextStyle(fontSize: 50.0),
+                style: TextStyle(fontSize: 50.0, color: _getStatusColor()),
               ),
             ),
           ),
+          const SizedBox(height: 8),
           Slider(
             min: 0,
             max: 100,
